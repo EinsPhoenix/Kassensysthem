@@ -97,6 +97,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
     restoreButtonNames();
 
+
+
+    function addiereMittlereZahlen() {
+        var listeElemente = document.querySelectorAll('#Listeu li');
+        var summe = 0;
+
+        for (var i = 0; i < listeElemente.length; i++) {
+            var text = listeElemente[i].textContent;
+            var zahlen = text.match(/\d+/g); // Extrahiere alle Zahlen
+
+            if (zahlen && zahlen.length >= 2) {
+                var mittlereZahl = parseInt(zahlen[1]); // Die zweite gefundene Zahl (Index 1)
+                summe += mittlereZahl;
+            }
+        }
+
+        console.log('Summe der mittleren Zahlen: ' + summe);
+        alert('Summe der mittleren Zahlen: ' + summe);
+    }
+
+    // Eventlistener für den Button hinzufügen
+    document.getElementById("Summe").addEventListener("click", function () {
+        addiereMittlereZahlen();
+    });
+
+
     //Eventlistener alle numpadbuttons
     const buttons = document.querySelectorAll("#numeric-keypad button");
     buttons.forEach(button => {
@@ -108,23 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "einstellungen.html";
     });
 
-    document.getElementById("Summe").addEventListener("click", function () {
-        const uls = document.querySelectorAll('ul');
 
-        let totalPrice = 0;
-
-        for (const ul of uls) {
-            const lis = ul.querySelectorAll('li');
-
-            for (const li of lis) {
-                const price = Number(li.textContent.split('€')[0]);
-
-                totalPrice += price;
-            }
-        }
-
-        alert(totalPrice);
-    });
 
     for (let i = 1; i <= 16; i++) {
 
