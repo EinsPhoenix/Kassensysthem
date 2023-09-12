@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasseninterface</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="Logic.js"></script>
+
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div id="left-section">
+            <div id="Listeitems">
+                <!-- Liste oben -->
+                <ul>
+                    <li id="Listenelement">
+                    </li>
+
+                    <!-- ... -->
+                </ul>
+
+            </div>
+
+            <!-- Nummernanzeige-Feld darunter -->
+            <div id="number-display">
+
+            </div>
+
+            <div id="buttonssumme" class="numpad">
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>Code</button>
+                <button>Gutscheine</button>
+                <button>Leergut</button>
+                <button>Non-Food</button>
+                <button>Lebensmittel</button>
+                <button>Summe</button>
+            </div>
+            <!-- 6 Knöpfe unten (3 oben, 3 unten) -->
+        </div>
+
+
+        <!-- Rechte seite anfang-->
+        <div id="right-section">
+            <div id="Menu">
+                <button>Home</button>
+                <button id="einstellungen">Einstellungen</button>
+
+            </div>
+            <br>
+            <div id="shortcuts">
+                <!-- 8 Tasten für Shortcuts -->
+                <div class="shortcut-buttons">
+                    <button id="s1">Fooditem 1</button>
+                    <button id="s2">Fooditem 2</button>
+                    <button id="s3">Fooditem 3</button>
+                    <button id="s4">Fooditem 4</button>
+                </div>
+                <br>
+                <div class="shortcut-buttons">
+                    <button id="s5">Fooditem 5</button>
+                    <button id="s6">Fooditem 6</button>
+                    <button id="s7">Fooditem 7</button>
+                    <button id="s8">Fooditem 8</button>
+
+                </div>
+                <br>
+                <!-- PfeileNavigation zwischen den Divs -->
+                <button id="prev-div">←</button>
+                <button id="next-div">→</button>
+            </div>
+            <div id="shortcuts2" class="hidden">
+                <!-- 8 Tasten für Shortcuts -->
+                <div class="shortcut-buttons">
+                    <button id="s9">Shortcut 1</button>
+                    <button id="s10">Shortcut 2</button>
+                    <button id="s11">Shortcut 3</button>
+                    <button id="s12">Shortcut 4</button>
+                </div>
+                <br>
+                <div class="shortcut-buttons">
+                    <button id="s13">Shortcut 5</button>
+                    <button id="s14">Shortcut 6</button>
+                    <button id="s15">Shortcut 7</button>
+                    <button id="s16">Shortcut 8</button>
+                </div>
+                <br>
+                <!-- Pfeile für Navigation zwischen den Divs -->
+                <button id="prev-div2">←</button>
+                <button id="next-div2">→</button>
+            </div>
+
+            <div id="numeric-keypad">
+                <!-- Nummernfeld mit Knöpfen von 0 bis 9 und 00 -->
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button>0</button>
+                <button>00</button>
+
+                <button id="clear">Del</button>
+                <button id="input">Eingabe</button>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        // JavaScript-Code für die Funktionalität
+        const shortcutsDiv = document.getElementById("shortcuts");
+        const shortcuts2 = document.getElementById("shortcuts2");
+        const leftSectionDiv = document.getElementById("left-section");
+
+        // Event-Listener für die Pfeile
+        document.getElementById("prev-div").addEventListener("click", () => {
+            shortcutsDiv.classList.add("hidden");
+            shortcuts2.classList.remove("hidden");
+
+        });
+
+        document.getElementById("next-div" || "next-div2").addEventListener("click", () => {
+            shortcutsDiv.classList.add("hidden");
+            shortcuts2.classList.remove("hidden");
+        });
+
+
+
+
+        // Event-Listener für die Pfeile
+        document.getElementById("prev-div2").addEventListener("click", () => {
+            shortcutsDiv.classList.remove("hidden");
+            shortcuts2.classList.add("hidden");
+
+        });
+
+        document.getElementById("next-div2").addEventListener("click", () => {
+            shortcutsDiv.classList.remove("hidden");
+            shortcuts2.classList.add("hidden");
+        });
+
+
+    </script>
+</body>
+
+</html>

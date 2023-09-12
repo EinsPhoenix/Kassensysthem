@@ -1,0 +1,140 @@
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+/* Stil für den Schließen-Button */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* Allgemeine Stile */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #afafaf;
+    margin: 0;
+    /* Entferne den Körperrand */
+}
+
+
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    /* Platz zwischen den Divs */
+    padding: 10px;
+    margin: 10px;
+    /* 10px Abstand zu den Rändern des Körpers */
+    width: 100%;
+    /* 100% Breite, um den Bildschirm auszufüllen */
+    height: 98vh;
+
+}
+
+/* Stile für die linke Seite */
+#left-section {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+    flex: 1;
+    margin: 10px;
+}
+
+#Listeitems {
+    flex-grow: 0.5;
+    /* Nimmt den verfügbaren vertikalen Platz ein */
+    margin-top: 10px;
+
+    overflow: auto;
+    background-color: rgb(209, 209, 209);
+    height: 50%;
+    border: 1px solid #2a2a2a;
+    /* Falls der Inhalt zu groß ist, scrollen */
+}
+
+ul {
+    list-style: none;
+    /* Entfernt Aufzählungszeichen */
+    padding: 0;
+}
+
+li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Beispiel-Styling für Listeneinträge (anpassbar) */
+li {
+    margin-bottom: 5px;
+}
+
+#number-display {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+}
+
+#buttonssumme {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    max-width: 950px;
+    max-height: 950px;
+    /* Optional: Begrenzen Sie die Breite des Tastenfelds */
+    margin: 0 auto;
+    /* Optional: Zentrieren Sie das Tastenfeld horizontal */
+    padding: 20px;
+}
+
+#buttonssumme button {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* Stile für die rechte Seite */
+#right-section {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+    flex: 1;
+    margin: 10px;
+    /* Fülle den verfügbaren Platz aus */
+}
+
+/* Zusätzliche Stile für die Ausblendung der Shortcuts-Buttons */
+.hidden {
+    display: none;
+}
+
+#numeric-keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    max-width: 300px;
+    /* Optional: Begrenzen Sie die Breite des Tastenfelds */
+    margin: 0 auto;
+    /* Optional: Zentrieren Sie das Tastenfeld horizontal */
+    padding: 20px;
+}
+
+#numeric-keypad button {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+}
