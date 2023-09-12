@@ -28,7 +28,7 @@ function logInput(event) {
         resultArea.textContent = "";
     } else {
         //Ist das eine Nummer oder nicht?
-        if (!isNaN(parseFloat(buttonText)) || buttonText === ".") {
+        if (!isNaN(parseFloat(buttonText)) && isFinite(buttonText)   ) {
             resultArea.textContent += buttonText;
         }
     }
