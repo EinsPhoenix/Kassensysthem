@@ -64,6 +64,16 @@ li {
     padding: 10px;
     background-color: #f2f2f2;
     border: 1px solid #ddd;
+    height: 20px;
+}
+
+#Summenfeld {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    height: 20px;
+
 }
 
 #buttonssumme {
@@ -117,4 +127,21 @@ li {
     padding: 10px;
     font-size: 18px;
     text-align: center;
+
+}
+
+
+
+.shortcut-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.shortcut-buttons button {
+    flex: 1;
+    margin: 5px;
+    /* Fügen Sie einen Abstand zwischen den Buttons hinzu, wenn gewünscht */
+    height: 100px;
+    /* Setzen Sie die Höhe auf 20px */
+    /* Andere gewünschte Stile für die Buttons */
 }

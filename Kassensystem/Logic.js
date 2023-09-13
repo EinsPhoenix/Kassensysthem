@@ -29,13 +29,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 preisi = Number(preisi);
                 steuerni = Number(steuerni);
 
-                if (Number(preisi) <= 100) {
-                    preisi = Number(preisi) / 100;
-                }
+
+                preisi = Number(preisi) / 100;
+                preisi = preisi.toFixed(2);
+
 
                 if (inputText) {
                     const listItem = document.createElement("li");
-                    listItem.textContent = `${namei}, ${preisi}€, ${steuerni}%`;
+
+                    const deleteButton = document.createElement("button");
+                    deleteButton.textContent = "Löschen";
+                    deleteButton.style.visibility = "hidden"; // Unsichtbar zu Beginn
+                    deleteButton.addEventListener("click", function () {
+                        // Eventlistener zum Löschen des Listenelements
+                        list.removeChild(listItem);
+                        addiereMittlereZahlen();
+                        const allDeleteButtons = document.querySelectorAll("#Listeu li button");
+                        allDeleteButtons.forEach(button => {
+                            button.style.visibility = "hidden";
+                        });
+                    });
+
+                    listItem.textContent = `${namei}, ${preisi}€`;
+                    listItem.appendChild(deleteButton);
                     list.appendChild(listItem);
                 }
 
@@ -47,7 +63,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             resultArea.textContent = "";
-        } else {
+        }
+        else if (buttonText === "C") {
+
+            resultArea.textContent = "";
+        }
+
+        else {
             //Ist das eine Nummer oder nicht?
             if (!isNaN(parseFloat(buttonText)) && isFinite(buttonText)) {
                 resultArea.textContent += buttonText;
@@ -70,18 +92,34 @@ document.addEventListener("DOMContentLoaded", function () {
         let steuerni = JSON.parse(localStorage.getItem(buttonuId)).steuern;
 
         preisi = Number(preisi);
+
         steuerni = Number(steuerni);
         console.log(namei, preisi, steuerni);
 
-        if (Number(preisi) <= 100) {
-            preisi = Number(preisi) / 100;
-        }
+
+        preisi = Number(preisi) / 100;
+        preisi = preisi.toFixed(2);
+
 
 
         const listItem = document.createElement("li");
-        listItem.textContent = `${namei}, €${preisi}, ${steuerni}%`;
-        list.appendChild(listItem);
 
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Löschen";
+        deleteButton.style.visibility = "hidden"; // Unsichtbar zu Beginn
+        deleteButton.addEventListener("click", function () {
+            // Eventlistener zum Löschen des Listenelements
+            list.removeChild(listItem);
+            addiereMittlereZahlen();
+            const allDeleteButtons = document.querySelectorAll("#Listeu li button");
+            allDeleteButtons.forEach(button => {
+                button.style.visibility = "hidden";
+            });
+        });
+
+        listItem.textContent = `${namei}, ${preisi}€`;
+        listItem.appendChild(deleteButton);
+        list.appendChild(listItem);
     }
 
     function restoreButtonNames() {
@@ -105,17 +143,137 @@ document.addEventListener("DOMContentLoaded", function () {
 
         for (var i = 0; i < listeElemente.length; i++) {
             var text = listeElemente[i].textContent;
-            var zahlen = text.match(/\d+/g); // Extrahiere alle Zahlen
+            var zahlen = text.match(/[-+]?\d+(\.\d+)?/g); // Extrahiere alle Zahlen (ganze und Dezimalzahlen)
 
-            if (zahlen && zahlen.length >= 2) {
-                var mittlereZahl = parseInt(zahlen[1]); // Die zweite gefundene Zahl (Index 1)
-                summe += mittlereZahl;
+            if (zahlen && zahlen.length > 0) {
+                for (var j = 0; j < zahlen.length; j++) {
+                    var zahl = parseFloat(zahlen[j]);
+                    console.log(zahl);
+                    summe += zahl;
+
+                }
             }
         }
 
-        console.log('Summe der mittleren Zahlen: ' + summe);
-        alert('Summe der mittleren Zahlen: ' + summe);
+        summe = summe / 2;
+        summe = summe.toFixed(2);
+        anzeigensumme = document.getElementById("Summenfeld");
+        anzeigensumme.innerHTML = summe + "€";
+        console.log('Summe der Zahlen: ' + summe);
+        alert('Summe der Zahlen: ' + summe);
     }
+
+    function handleMutation(mutationsList, observer) {
+        for (var mutation of mutationsList) {
+            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                // Ein neues Listenelement wurde hinzugefügt, rufen Sie Ihre Funktion auf
+                addiereMittlereZahlen();
+            }
+        }
+    }
+
+    function entferneLetztesElement() {
+        var listeElemente = document.querySelectorAll('#Listeu li');
+        var letztesElement = listeElemente[listeElemente.length - 1];
+
+        if (listeElemente.length > 1) {
+            var letztesElement = listeElemente[listeElemente.length - 1];
+            letztesElement.remove();
+            addiereMittlereZahlen(); // Aktualisieren Sie die Summe nach dem Entfernen
+        }
+    }
+    document.getElementById('entfernenButton').addEventListener('click', entferneLetztesElement);
+
+
+
+
+    function preisemanuel(targetbutton) {
+        const list = document.getElementById("Listenelement");
+
+
+        const inputText = resultArea.textContent; // Trimmen Sie den Text, um führende und abschließende Leerzeichen zu entfernen.
+        const testennumber = Number(inputText)
+        if (targetbutton === "leben" && testennumber !== 0) {
+            var preis = Number(inputText) / 100;
+            preis = preis.toFixed(2);
+
+            const listItem = document.createElement("li");
+
+            listItem.textContent = `Lebensmittel, ${preis}€`;
+            list.appendChild(listItem);
+
+        } else if (targetbutton === "nonfood" && testennumber !== 0) {
+            var preis = Number(inputText) / 100;
+
+            preis = preis.toFixed(2);
+
+            const listItem = document.createElement("li");
+
+            listItem.textContent = `Nonfood, ${preis}€`;
+            list.appendChild(listItem);
+        }
+        else if (targetbutton === "abzug" && testennumber !== 0) {
+            var preis = Number(inputText) / 100;
+
+            preis = 0 - preis.toFixed(2);
+
+            const listItem = document.createElement("li");
+
+            listItem.textContent = `Abzug, ${preis.toFixed(2)}€`;
+            list.appendChild(listItem);
+
+
+        } else {
+            alert("Fehler"); // "Fehler" in Anführungszeichen setzen.
+        }
+
+        resultArea.textContent = "";
+    }
+
+    document.getElementById("abzug").addEventListener("click", function () {
+        preisemanuel("abzug");
+    });
+    // Event-Listener hinzufügen (die Funktion wird erst beim Klicken aufgerufen, nicht sofort).
+    document.getElementById("leben").addEventListener("click", function () {
+        preisemanuel("leben");
+    });
+
+    document.getElementById("nonfood").addEventListener("click", function () {
+        preisemanuel("nonfood");
+    });
+
+
+
+    document.getElementById("showButtons").addEventListener("click", function () {
+        var listeElemente = document.querySelectorAll('#Listeu li');
+
+
+        if (listeElemente.length > 2) {
+            const allDeleteButtons = document.querySelectorAll("#Listeu li button");
+            allDeleteButtons.forEach(button => {
+                button.style.visibility = "visible";
+            });
+        }
+
+        else {
+            alert("nicht erlaubt");
+
+
+        }
+    });
+
+
+
+
+
+
+    // Hier erstellen wir einen Mutation Observer
+    var observer = new MutationObserver(handleMutation);
+    var options = { childList: true, subtree: true };
+    observer.observe(document.getElementById('Listeu'), options);
+
+
+
 
     // Eventlistener für den Button hinzufügen
     document.getElementById("Summe").addEventListener("click", function () {
