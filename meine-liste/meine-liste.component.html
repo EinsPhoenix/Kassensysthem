@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="header">
+        <p class="score">{{ daten.Score.toFixed(2) }}</p>
+        <p class="name">{{ daten.nameaus }}</p>
+    </div>
+    <div class="main">
+        <div class="left">
+            <label for="length">Länge:</label>
+            <p class="length">{{ daten.laenge }} km</p>
+            <img src="/../assets/Autobahn.png" alt="Autobahnsymbol" class="icon">
+        </div>
+        <div class="center">
+            <label for="baustellen">Anzahl der Baustellen:</label>
+            <p class="baustellen">{{ daten.Baustellen }}</p>
+            <img src="/../assets/Baustelle.png" alt="Baustellensymbol" class="icon">
+        </div>
+        <div class="sperrungen">
+            <label for="sperrungen">Sperrungen:</label>
+            <p class="sperrungen">{{ daten.Sperrungen }}</p>
+            <img src="/../assets/Zugriffpuf.png" alt="Sperrungssymbol" class="icon">
+        </div>
+        <div class="webcam">
+            <label for="webcam">Anzahl der Webcams:</label>
+            <p class="webcam">{{ daten.Webcam }}</p>
+            <img src="/../assets/Kamera.png" alt="Webcamsymbol" class="icon">
+        </div>
+        <div class="Raststelle">
+            <label for="Raststelle">Anzahl der Rastplätze:</label>
+            <p class="Raststelle">{{ daten.Rastplaetze }}</p>
+            <img src="/../assets/Rastplatz.jpg" alt="Webcamsymbol" class="icon">
+        </div>
+        <div class="Warnungen">
+            <label for="Warnungen">Aktulle Warnungen:</label>
+            <p class="Warnungen">{{ daten.Warnungen }}</p>
+            <img src="/../assets/Ausrufezeichen.png" alt="Webcamsymbol" class="icon">
+        </div>
+    </div>
+</div>

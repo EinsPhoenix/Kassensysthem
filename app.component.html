@@ -1,0 +1,16 @@
+<div *ngIf="(dto.length === 0 ) || dto.length > 0">
+  <h1>Suchen:</h1>
+  <input type="text" [(ngModel)]="searchQuery" placeholder="Autobahn suchen" (keyup.enter)="performSearch()">
+
+  <div *ngIf="dto.length > 0">
+    <app-liste-suche *ngIf="gesucht"> bbabababa</app-liste-suche>
+
+
+
+    <app-meine-liste *ngFor="let item of (!gesucht ? dto : [])" [daten]="item"></app-meine-liste>
+
+  </div>
+  <div *ngIf="dto.length === 0" class="container">
+    <div class="loader"></div>
+  </div>
+</div>
